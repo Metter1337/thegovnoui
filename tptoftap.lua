@@ -69,3 +69,12 @@ local Bind = Window:CreateBind({
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3, -7, -2)
   end
 })
+
+local Bind = Window:CreateBind({
+  Name = "HouseTP",
+  Default = "M", 
+  Hold = true,
+  Callback = function(Holding)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-491, -7, -166)
+  end
+})
