@@ -78,3 +78,38 @@ local Bind = Window:CreateBind({
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-491, -7, -166)
   end
 })
+
+local Toggle = Window:CreateToggle({
+  Name = "Toggle",
+  Default = true,
+  Callback = function(bool)
+             _G.LoopTP = bool
+        if bool then
+            task.spawn(function()
+                while _G.LoopTP do
+                    local char = game.Players.LocalPlayer.Character
+                    local hrp = char and char:FindFirstChild("HumanoidRootPart")
+                    
+                    if hrp then
+                        local points = {
+                            CFrame.new(-491, -7, -166),
+                            CFrame.new(510, 83, -339),
+                            CFrame.new(554, 123, -72),
+                            CFrame.new(250, -6, 463),
+                            CFrame.new(-535, -7, 93),
+                            CFrame.new(3, -7, -2)
+                        }
+                        
+                        for _, cf in ipairs(points) do
+                            if not _G.LoopTP then break end
+                            hrp.CFrame = cf
+                            task.wait(0.01)
+                        end
+                    else
+                        task.wait(1)
+                    end
+                end
+            end)
+        end
+    end
+})
