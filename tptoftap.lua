@@ -80,7 +80,7 @@ local Bind = Window:CreateBind({
 })
 
 local Toggle = Window:CreateToggle({
-  Name = "Toggle",
+  Name = "Loop TP",
   Default = true,
   Callback = function(bool)
              _G.LoopTP = bool
