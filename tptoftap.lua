@@ -75,7 +75,7 @@ local Bind = Window:CreateBind({
   Default = "M", 
   Hold = true,
   Callback = function(Holding)
-    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-491, -7, -166)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(510, 83, -339)
   end
 })
 
