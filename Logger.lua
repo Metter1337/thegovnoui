@@ -1,9 +1,9 @@
 local TheWorstUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metter1337/thegovnoui/refs/heads/main/TheWorstUI.lua"))()
 local Window = TheWorstUI:CreateWindow({
     Name = "logger",
-    SizeX = 200,
-    SizeY = 200,
-    CanResize = "X",
+    SizeX = 300,
+    SizeY = 600,
+    CanResize = "Y",
 })
 
 for _, plr in ipairs(game.Players:GetPlayers()) do
