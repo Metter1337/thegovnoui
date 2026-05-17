@@ -2,7 +2,7 @@ local TheWorstUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Me
 local Window = TheWorstUI:CreateWindow({
     Name = "logger",
     SizeX = 300,
-    SizeY = 600,
+    SizeY = 500,
     CanResize = "Y",
 })
 
