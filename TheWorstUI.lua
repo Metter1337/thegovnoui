@@ -635,6 +635,7 @@
 
         function Tab:CreateLabel(LabelText: string?): table
             local Label = { Text = LabelText }
+            local HasColor = string.find(LabelText or "", "<font") ~= nil
 
             local LabelFrame = SetChildren(CreateElement("Frame", {
                 Parent = HolderFrame.Holder,
@@ -652,7 +653,7 @@
                     RichText = true,
                     TextColor3 = Color3.fromRGB(240, 240, 240),
                     TextSize = 14,
-                    Font = Enum.Font.GothamBlack
+                    Font = HasColor and Enum.Font.GothamBlack or Enum.Font.GothamMedium
                 }),
                 CreateElement("UICorner", {CornerRadius = UDim.new(0, 20)})
             }); LabelFrame.TextLabel.Text = LabelText
