@@ -9,7 +9,6 @@ local evernessascii = [[
                                                           
 ]]
 warn(evernessascii)
-setfpscap(999)
 
 local TheWorstUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metter1337/thegovnoui/refs/heads/main/TheWorstUI.lua"))()
 local Window = TheWorstUI:CreateWindow({
