@@ -449,17 +449,17 @@ function OrionLib:MakeWindow(WindowConfig)
 		WindowConfig.Background = WindowConfig.Background or nil
 
 		local BackgroundNames = {
-			"4k_house",
-			"gory",
-			"kocmoc_gory_rgb_nebo",
-			"kocmoc_gory_utro",
-			"snow"
+			"Anime", "Apple", "Arctic", "Big Rat", "Cat",
+			"Forest", "Gray Hill", "Landscape", "Mount", "Mount v2",
+			"OnlyLose", "Rainy House", "Ronaldo", "Sea",
+			"Sun", "Sun v2", "TokyoGhoul", "Vereshchak_HCK"
 		}
 
 		local function LoadBackground(name)
 			if not name then return nil end
-			local fileName = "BetterOrion_bg_" .. name .. ".jpg"
-			local url = "https://raw.githubusercontent.com/m1kp0/BetterOrion/main/Backgrounds/" .. name .. ".jpg"
+			local ext = (name == "Landscape" or name == "OnlyLose" or name == "Ronaldo" or name == "Vereshchak_HCK" or name == "pidor") and ".png" or ".jpg"
+			local fileName = "BetterOrion_bg_" .. name:gsub(" ", "_") .. ext
+			local url = "https://raw.githubusercontent.com/Metter1337/thegovnoui/main/backgrounds/" .. name:gsub(" ", "%%20") .. ext
 			local success, result = pcall(function()
 				if not isfile(fileName) then
 					local data = game:HttpGet(url)
