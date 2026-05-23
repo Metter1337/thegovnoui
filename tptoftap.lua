@@ -1,3 +1,4 @@
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/Metter1337/thegovnoui/refs/heads/main/tptoftap.lua"))()
 local evernessascii = [[
 
                                             _             
@@ -54,6 +55,13 @@ local Button = Window:CreateButton({
 })
 
 local Button = Window:CreateButton({
+  Name = "Void",
+  Callback = function() 
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3564.11255, 33472.4453, 902.990967, 0.756310523, -0.0632280111, 0.651150227, 1.71609173e-07, 0.995318711, 0.0966472775, -0.654212773, -0.0730952397, 0.752770007)
+  end
+})
+
+local Button = Window:CreateButton({
   Name = "Spawn",
   Callback = function() 
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3, -7, -2)
@@ -66,6 +74,15 @@ local Bind = Window:CreateBind({
   Hold = true,
   Callback = function(Holding)
     game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3, -7, -2)
+  end
+})
+
+local Bind = Window:CreateBind({
+  Name = "VoidTP",
+  Default = "Backquote", 
+  Hold = true,
+  Callback = function(Holding)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3564.11255, 33472.4453, 902.990967, 0.756310523, -0.0632280111, 0.651150227, 1.71609173e-07, 0.995318711, 0.0966472775, -0.654212773, -0.0730952397, 0.752770007)
   end
 })
 
