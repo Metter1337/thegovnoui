@@ -12,7 +12,7 @@ local evernessascii = [[
 warn(evernessascii)
 
 local TheWorstUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/m1kp0/libraries/refs/heads/main/TheWorstUI.lua"))
-local Window = TheWorstUI:CreateWindow({Name = "♥ Teleport", SizeX = 200, CanResize = "BOTH"})
+local Window = TheWorstUI:CreateWindow({Name = "Teleport", SizeX = 200, CanResize = "BOTH"})
 
 local Button = Window:CreateButton({
   Name = "Pink House",
