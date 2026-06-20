@@ -1,16 +1,4 @@
 -- loadstring(game:HttpGet("https://raw.githubusercontent.com/Metter1337/thegovnoui/refs/heads/main/tptoftap.lua"))()
-local evernessascii = [[
-
-                                            _             
-                                           | |            
-   _____   _____ _ __ _ __   ___  ___ ___  | |_   _  __ _ 
-  / _ \ \ / / _ \ '__| '_ \ / _ \/ __/ __| | | | | |/ _` |
- |  __/\ V /  __/ |  | | | |  __/\__ \__ \_| | |_| | (_| |
-  \___| \_/ \___|_|  |_| |_|\___||___/___(_)_|\__,_|\__,_|
-                                                          
-]]
-warn(evernessascii)
-
 local TheWorstUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/m1kp0/libraries/refs/heads/main/TheWorstUI.lua"))
 local Window = TheWorstUI:CreateWindow({Name = "Teleport", SizeX = 200, CanResize = "BOTH"})
 
