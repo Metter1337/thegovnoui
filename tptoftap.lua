@@ -11,13 +11,8 @@ local evernessascii = [[
 ]]
 warn(evernessascii)
 
-local TheWorstUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/Metter1337/thegovnoui/refs/heads/main/TheWorstUI.lua"))()
-local Window = TheWorstUI:CreateWindow({
-  Name = "♥ everness.lua",
-  SizeX = 200,
-  SizeY = 0, -- 0 if you want to automate your Y size
-  CanResize = "X", -- users can size your ui only by x
-})
+local TheWorstUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/m1kp0/libraries/refs/heads/main/TheWorstUI.lua"))
+local Window = TheWorstUI:CreateWindow({Name = "♥ Teleport", SizeX = 200, CanResize = "BOTH"})
 
 local Button = Window:CreateButton({
   Name = "Pink House",
