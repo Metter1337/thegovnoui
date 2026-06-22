@@ -23,13 +23,11 @@ if getgenv().UniversalFlyBG then
 	end)
 end
 
------ настройки флая
-local NORMAL_SPEED = 250 -- скорость флая на PageUp (средний флай)
-local FAST_SPEED = 1000 -- скорость флая на End (быстрый флай)
+local NORMAL_SPEED = 250
+local FAST_SPEED = 1000
 
-local SMOOTHNESS = 0.20 -- плавность флая
-local ROTATION_SMOOTHNESS = 0.26 -- плавность флая при повороте
----------------------
+local SMOOTHNESS = 0.20
+local ROTATION_SMOOTHNESS = 0.26
 
 local Flying = false
 local Speed = NORMAL_SPEED
@@ -60,7 +58,6 @@ local function GetRoot()
 end
 
 local function GetVehicle()
-
 	local Humanoid = GetHumanoid()
 
 	if Humanoid and Humanoid.SeatPart then
@@ -71,11 +68,9 @@ local function GetVehicle()
 end
 
 local function GetFlyPart()
-
 	local Vehicle = GetVehicle()
 
 	if Vehicle then
-
 		if Vehicle.PrimaryPart then
 			return Vehicle.PrimaryPart, true
 		end
@@ -91,30 +86,22 @@ local function GetFlyPart()
 end
 
 local function FixCharacter()
-
 	local Humanoid = GetHumanoid()
-
-	if not Humanoid then
-		return
-	end
+	if not Humanoid then return end
 
 	Humanoid.PlatformStand = false
 	Humanoid.AutoRotate = true
 
 	for _,Track in pairs(Humanoid:GetPlayingAnimationTracks()) do
-
 		local Name = Track.Name:lower()
 
-		if string.find(Name, "fall") or
-			string.find(Name, "jump") then
-
+		if string.find(Name, "fall") or string.find(Name, "jump") then
 			Track:Stop()
 		end
 	end
 end
 
 local function StopFly()
-
 	Flying = false
 
 	if Loop then
@@ -135,31 +122,21 @@ local function StopFly()
 	local Humanoid = GetHumanoid()
 
 	if Humanoid then
-
 		Humanoid.PlatformStand = false
 		Humanoid.AutoRotate = true
 
 		Humanoid:ChangeState(Enum.HumanoidStateType.GettingUp)
-
 		task.wait()
-
 		Humanoid:ChangeState(Enum.HumanoidStateType.Running)
 	end
 end
 
 local function StartFly(NewSpeed)
-
 	Speed = NewSpeed
 
 	local Part, IsVehicle = GetFlyPart()
-
-	if not Part then
-		return
-	end
-
-	if Flying then
-		return
-	end
+	if not Part then return end
+	if Flying then return end
 
 	Flying = true
 
@@ -180,11 +157,7 @@ local function StartFly(NewSpeed)
 	getgenv().UniversalFlyBG = BG
 
 	Loop = RunService.RenderStepped:Connect(function()
-
-		if not Flying then
-			return
-		end
-
+		if not Flying then return end
 		if not Part or not Part.Parent then
 			StopFly()
 			return
@@ -196,40 +169,19 @@ local function StartFly(NewSpeed)
 
 		local Move = Vector3.zero
 
-		if Controls.W then
-			Move += Camera.CFrame.LookVector
-		end
-
-		if Controls.S then
-			Move -= Camera.CFrame.LookVector
-		end
-
-		if Controls.A then
-			Move -= Camera.CFrame.RightVector
-		end
-
-		if Controls.D then
-			Move += Camera.CFrame.RightVector
-		end
-
-		if Controls.UP then
-			Move += Vector3.new(0,1,0)
-		end
-
-		if Controls.DOWN then
-			Move -= Vector3.new(0,1,0)
-		end
+		if Controls.W then Move += Camera.CFrame.LookVector end
+		if Controls.S then Move -= Camera.CFrame.LookVector end
+		if Controls.A then Move -= Camera.CFrame.RightVector end
+		if Controls.D then Move += Camera.CFrame.RightVector end
+		if Controls.UP then Move += Vector3.new(0,1,0) end
+		if Controls.DOWN then Move -= Vector3.new(0,1,0) end
 
 		local Target = Vector3.zero
-
 		if Move.Magnitude > 0 then
 			Target = Move.Unit * Speed
 		end
 
-		BV.Velocity = BV.Velocity:Lerp(
-			Target,
-			SMOOTHNESS
-		)
+		BV.Velocity = BV.Velocity:Lerp(Target, SMOOTHNESS)
 
 		BG.CFrame = BG.CFrame:Lerp(
 			CFrame.new(
@@ -238,46 +190,24 @@ local function StartFly(NewSpeed)
 			),
 			ROTATION_SMOOTHNESS
 		)
-
 	end)
 
 	getgenv().UniversalFlyConnection = Loop
 end
 
 UIS.InputBegan:Connect(function(Input, GP)
-
-	if GP then
-		return
-	end
+	if GP then return end
 
 	local Key = Input.KeyCode
 
-	if Key == Enum.KeyCode.W then
-		Controls.W = true
-	end
+	if Key == Enum.KeyCode.W then Controls.W = true end
+	if Key == Enum.KeyCode.A then Controls.A = true end
+	if Key == Enum.KeyCode.S then Controls.S = true end
+	if Key == Enum.KeyCode.D then Controls.D = true end
+	if Key == Enum.KeyCode.Space then Controls.UP = true end
+	if Key == Enum.KeyCode.LeftControl then Controls.DOWN = true end
 
-	if Key == Enum.KeyCode.A then
-		Controls.A = true
-	end
-
-	if Key == Enum.KeyCode.S then
-		Controls.S = true
-	end
-
-	if Key == Enum.KeyCode.D then
-		Controls.D = true
-	end
-
-	if Key == Enum.KeyCode.Space then
-		Controls.UP = true
-	end
-
-	if Key == Enum.KeyCode.LeftControl then
-		Controls.DOWN = true
-	end
-
-	if Key == Enum.KeyCode.PageUp then
-
+	if Key == Enum.KeyCode.PageUp or Key == Enum.KeyCode.Four then
 		if Flying and Speed == NORMAL_SPEED then
 			StopFly()
 		else
@@ -285,51 +215,28 @@ UIS.InputBegan:Connect(function(Input, GP)
 		end
 	end
 
-	if Key == Enum.KeyCode.End then
-
+	if Key == Enum.KeyCode.End or Key == Enum.KeyCode.Q then
 		if Flying and Speed == FAST_SPEED then
 			StopFly()
 		else
 			StartFly(FAST_SPEED)
 		end
 	end
-
 end)
 
 UIS.InputEnded:Connect(function(Input)
-
 	local Key = Input.KeyCode
 
-	if Key == Enum.KeyCode.W then
-		Controls.W = false
-	end
-
-	if Key == Enum.KeyCode.A then
-		Controls.A = false
-	end
-
-	if Key == Enum.KeyCode.S then
-		Controls.S = false
-	end
-
-	if Key == Enum.KeyCode.D then
-		Controls.D = false
-	end
-
-	if Key == Enum.KeyCode.Space then
-		Controls.UP = false
-	end
-
-	if Key == Enum.KeyCode.LeftControl then
-		Controls.DOWN = false
-	end
-
+	if Key == Enum.KeyCode.W then Controls.W = false end
+	if Key == Enum.KeyCode.A then Controls.A = false end
+	if Key == Enum.KeyCode.S then Controls.S = false end
+	if Key == Enum.KeyCode.D then Controls.D = false end
+	if Key == Enum.KeyCode.Space then Controls.UP = false end
+	if Key == Enum.KeyCode.LeftControl then Controls.DOWN = false end
 end)
 
 LP.CharacterAdded:Connect(function()
-
 	task.wait(2)
-
 	StopFly()
 end)
 
