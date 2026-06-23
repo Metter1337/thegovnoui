@@ -110,3 +110,26 @@ local Toggle = Window:CreateToggle({
         end
     end
 })
+
+local Toggle = Window:CreateToggle({
+    Name = "Auto Reset",
+    Default = false,
+    Callback = function(bool)
+        _G.AutoReset = bool
+
+        if bool then
+            task.spawn(function()
+                while _G.AutoReset do
+                    local char = game.Players.LocalPlayer.Character
+                    local humanoid = char and char:FindFirstChildOfClass("Humanoid")
+
+                    if humanoid then
+                        humanoid.Health = 0
+                    end
+
+                    task.wait(0.1)
+                end
+            end)
+        end
+    end
+})
