@@ -113,7 +113,7 @@ local Toggle = Window:CreateToggle({
 
 local Toggle = Window:CreateToggle({
     Name = "Auto Reset",
-    Default = false,
+    Default = true,
     Callback = function(bool)
         _G.AutoReset = bool
 
